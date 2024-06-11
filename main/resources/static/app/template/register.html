@@ -1,0 +1,39 @@
+<div class="text-center" style="padding-top: 170px">
+    <form class="w-50" style="display: inline-block" novalidate="novalidate">
+        <div class="form-outline mb-4">
+            <!--Username Input -->
+            <input type="text" id="usernameFormId" class="form-control" ng-model="regist.username"
+                   autocomplete="off"/>
+            <label class="form-label" for="usernameFormId">Username</label>
+        </div>
+        <!--Password Input-->
+        <div class="form-outline mb-4">
+            <input type="password" id="passwordFormId" class="form-control" ng-model="regist.password"
+                   autocomplete="off"/>
+            <label class="form-label" for="passwordFormId">Password</label>
+        </div>
+
+
+
+
+        <div class="mx-auto">
+            <label for="file" class="form-label, hand">Avatar</label>
+            <div>
+                <button class="button" ngf-select ng-model="file" name="file" ngf-pattern="'image/*'"
+                        ngf-accept="'image/*'"
+                        ngf-max-size="20MB" ngf-min-height="100" ngf-resize="{width: 100, height: 100}"><b>Select</b>
+
+                </button>
+            </div>
+
+        </div>
+
+
+        <!--Submit button -->
+        <!--Register button -->
+
+        <button type="button" class="btn btn-primary btn-block mt-4" ng-click="register()">Register</button>
+
+
+    </form>
+</div>

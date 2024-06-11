@@ -1,0 +1,218 @@
+<div class="container app h-100">
+    <div class="row app-one">
+        <div class="col-sm-4 side">
+            <div class="side-one">
+                <div class="row heading">
+                    <div class="col-sm-8 col-xs-3 heading-avatar">
+                        <div ng-click="showProfile()" class="heading-avatar-icon">
+                            <img src="/account/avatar/{{profile.avatar}}">
+                            <span>{{profile.nickname}}</span>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-2 col-xs-1  heading-dot  pull-right" style="grid-column-start: 8">
+                        <div class="dropdown" style="text-align: right">
+                            <a class="dropdown-toggle" data-bs-toggle='dropdown' href="#" role="button"
+                               aria-haspopup="true" aria-expanded="false">
+                                <i class="fa fa-ellipsis-v fa-2x  pull-right"></i></a>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" href="/new-group">New Group</a>
+                                <a class="dropdown-item" ng-click="logout()">Logout</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-2 col-xs-2 heading-compose  pull-right" ng-if="pageController() == 2"
+                         ng-click="showAllConversations()">
+                        <i class="fa fa-arrow-left fa-2x  pull-right" aria-hidden="true"></i>
+                    </div>
+                </div>
+
+                <div class="row searchBox">
+                    <div class="col-sm-12 searchBox-inner">
+                        <div class="form-group has-feedback">
+                            <input id="searchText" type="text" class="form-control" name="searchText"
+                                   placeholder="Search" ng-model="sParam" ng-Enter="searchUserOrChat()">
+                            <span class="glyphicon glyphicon-search form-control-feedback"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row sideBar" style="align-content: flex-start">
+                    <div class="row sideBar-body" ng-if="pageController() ==0 || pageController() ==1"
+                         ng-repeat="c in conversations">
+                        <div class="col-sm-3 col-xs-3 sideBar-avatar">
+                            <div class="avatar-icon">
+                                <img src="/account/avatar/{{c.avatar}}">
+                            </div>
+                        </div>
+                        <div class="col-sm-9 col-xs-9 sideBar-main" ng-click="readChat(c)">
+                            <div class="row">
+                                <div class="col-sm-8 col-xs-8 sideBar-name">
+                  <span class="name-meta">{{c.chatName}}
+
+
+                                </div>
+                                <div class="col-sm-4 col-xs-4 pull-right sideBar-time">
+                  <span class="time-meta pull-right">{{c.lastMessageDate | date:'yyyy.dd.MM HH:mm' }}
+                </span>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="row sideBar-body" ng-if="pageController() == 2 || pageController() == 3"
+                         ng-repeat="r in result">
+                        <div class="col-sm-3 col-xs-3 sideBar-avatar">
+                            <div class="avatar-icon">
+                                <img src="/account/avatar/{{r.account.profile.avatar}}">
+                            </div>
+
+                        </div>
+                        <div class="col-sm-9 col-xs-9 sideBar-main" ng-click="newChatPage(r)">
+                            <div class="row">
+                                <div class="col-sm-8 col-xs-8 sideBar-name">
+                  <span class="name-meta">{{r.account.username}}
+                </span>
+                                </div>
+                                <div class="col-sm-4 col-xs-4 pull-right sideBar-time">
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="side-two">
+                <div class="row newMessage-heading">
+                    <div class="row newMessage-main">
+                        <div class="col-sm-2 col-xs-2 newMessage-back">
+                            <i class="fa fa-arrow-left" aria-hidden="true"></i>
+                        </div>
+                        <div class="col-sm-10 col-xs-10 newMessage-title">
+                            New Chat
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+
+        <div class="col-sm-8 conversation" ng-if="pageController() == 1">
+            <div class="row heading d-flex">
+                <div class="col heading-avatar d-flex">
+                    <div class="heading-avatar-icon">
+                        <img src="/account/avatar/{{c_avatar}}">
+                    </div>
+                    <p class="heading-name-meta">{{c_name}}
+                        <span ng-if="!c_g">
+                        <span class="heading-online" ng-if="current_state.state !== null">{{current_state.state}}</span>
+                        <span class="heading-online" ng-if="current_state.state == null">Last Seen : {{current_state.lastSeen | date:'hh:mm dd-MMM'}}</span>
+                        </span>
+                        <span>{{typ.typing}}</span>
+                    </p>
+
+                </div>
+                <div class="col-sm-1 col-xs-1  heading-dot  pull-right">
+                    <div class="dropdown" >
+                        <a class="dropdown-toggle" data-bs-toggle='dropdown' href="#" role="button"
+                           aria-haspopup="true" aria-expanded="false" >
+                            <i class="fa fa-ellipsis-v fa-2x  pull-right"></i></a>
+                        <div class="dropdown-menu" ng-if="c_g">
+                            <a class="dropdown-item" ng-click="leaveGroup()">Leave Group</a>
+                            <a class="dropdown-item" ng-click="updateGroup()">Group Settings</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="message" id="conversation">
+
+
+                <div class=" message-body" data-ng-repeat="m in messages">
+                    <div class="col-sm-12"
+                         ng-class="{'message-main-receiver': !isSender(m), 'message-main-sender': isSender(m)}">
+                        <div ng-class="{'receiver': !isSender(m), 'sender': isSender(m)}">
+                            <div class="message-text">
+                                <div ng-if="c_g && m.sender !== username"><b>{{m.sender}}:</b></div>
+                                {{m.content}}
+                                <span ng-if="isSender(m)">
+                                <i ng-if="m.status === 'SENT'" class="fa-solid fa-check" fa-align-right></i>
+                                <i ng-if="m.status === 'DELIVERED'" class="fa-solid fa-check-double" fa-align-right></i>
+                                <i ng-if="m.status === 'SEEN'" class="fa-solid fa-check-double" style="color:blue"
+                                   fa-align-right></i>
+                            </span>
+                            </div>
+                            <span class="message-time pull-right">
+                {{m.sendDate | date:'hh:mm dd-MMM-yyyy'}}
+              </span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div class="row reply">
+                <div class="col-sm-1 col-xs-1 reply-emojis">
+                    <i class="fa fa-smile-o fa-2x"></i>
+                </div>
+                <div class="col-sm-9 col-xs-9 reply-main">
+                <textarea type="text" class="form-control" ng-change="typing()" rows="1" name="content" id="content"
+                          ng-model="message.content" ng-click="seeMessages()"
+                          ng-if="content.$pristine == content.$invalid" ng-Enter="send()"
+                          required></textarea>
+                </div>
+                <div class="col-sm-1 col-xs-1 reply-recording">
+                    <i class="fa fa-microphone fa-2x" aria-hidden="true"></i>
+                </div>
+                <div class="col-sm-1 col-xs-1 reply-send">
+                    <i class="fa fa-send fa-2x" aria-hidden="true"></i>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-8 conversation" ng-if="pageController() == 3">
+            <div class="row heading d-flex">
+                <div class="col heading-avatar d-flex">
+                    <div class="heading-avatar-icon">
+                        <img src="/account/avatar/{{nCAccount.profile.avatar}}">
+                    </div>
+                    <p class="heading-name-meta">{{ncAccount.username}}
+
+                    </p>
+
+                </div>
+                <div class="col-1 heading-dot pull-right">
+                    <i class="fa fa-ellipsis-v fa-2x  pull-right" aria-hidden="true"></i>
+                </div>
+            </div>
+
+
+            <div class="row reply">
+                <div class="col-sm-1 col-xs-1 reply-emojis">
+                    <i class="fa fa-smile-o fa-2x"></i>
+                </div>
+                <div class="col-sm-9 col-xs-9 reply-main">
+                <textarea type="text" class="form-control" rows="1" name="content1" id="content1"
+                          ng-model="message.content1"
+                          ng-if="content.$pristine == content.$invalid" ng-Enter="newChat()"
+                          required></textarea>
+                </div>
+                <div class="col-sm-1 col-xs-1 reply-recording">
+                    <i class="fa fa-microphone fa-2x" aria-hidden="true"></i>
+                </div>
+                <div class="col-sm-1 col-xs-1 reply-send">
+                    <i class="fa fa-send fa-2x" aria-hidden="true"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

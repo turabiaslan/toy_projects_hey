@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <link rel="icon"
+          href="https://toppng.com/uploads/preview/whatsapp-vs-slack-wsp-slack-svg-whatsapp-icon-vector-11562891097ze2ncrz0fn.png">
+    <title>Hey</title>
+
+    <base href="/">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.0/css/bootstrap.min.css"
+          integrity="sha512-XWTTruHZEYJsxV3W/lSXG1n3Q39YIWOstqvmFsdNEEQfHoZ6vm6E9GK2OrF6DSJSpIbRbi+Nn0WDPID9O7xB2Q=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+          integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
+
+    <link rel="stylesheet"
+          href="/3rd/toastr/toastr.min.css"/>
+    <link rel="stylesheet"
+          href="/3rd/swal/sweetalert2.min.css"/>
+
+    <link rel="stylesheet"
+          href="/3rd/datepicker/css/datetimepicker.css"/>
+
+    <link href="/app/css/styles.css"
+          rel="stylesheet"/>
+
+    <script th:inline="javascript">
+        let current_user = /*[[${session.session_account}]]*/;
+    </script>
+</head>
+<body ng-app="hey" ng-cloak>
+
+<div class="container-fluid h-100" id="main-container">
+
+
+    <div ng-view="" class=" h-100"></div>
+
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"
+        integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/js/bootstrap.bundle.min.js"
+        integrity="sha512-9GacT4119eY3AcosfWtHMsT5JyZudrexyEVzTBWV3viP/YfB9e2pEy3N7WXL3SV6ASXpTU0vzzSxsbfsuUH4sQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<!-- Angular Dependencies -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.3/angular.min.js"
+        integrity="sha512-KZmyTq3PLx9EZl0RHShHQuXtrvdJ+m35tuOiwlcZfs/rE7NZv29ygNA8SFCkMXTnYZQK2OX0Gm2qKGfvWEtRXA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-route/1.8.3/angular-route.min.js"
+        integrity="sha512-y1qD3hz/IAf8W4+/UMLZ+CN6LIoUGi7srWJ3r1R17Hid8x0yXe+1B5ZelkaL1Mjzedzu0Cg3HBvDG02SAgSzBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-resource/1.8.3/angular-resource.min.js"
+        integrity="sha512-+ymw+FkoDhPw+7/1DWVtASoICv7lwuvpkbVFqc4ASu1D385wKiLHu4ofOOxhpTlWoza/yIivwwteembPbeBuMg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<!-- WebSocket Clients -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.6.1/sockjs.min.js"
+        integrity="sha512-1QvjE7BtotQjkq8PxLeF6P46gEpBRXuskzIVgjFpekzFVF4yjRgrQvTG1MTOJ3yQgvTteKAcO7DSZI92+u/yZw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"
+        integrity="sha512-iKDtgDyTHjAitUDdLljGhenhPwrbBfqTKWO1mkhSFH3A7blITC9MhYon6SjnMhp4o0rADGw9yAC6EW4t5a4K3g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<!-- 3rd party dependencies -->
+<script src="/3rd/js/lodash.js"></script>
+<script src="/3rd/toastr/toastr.min.js"></script>
+<script src="/3rd/js/ui-bootstrap-tpls-3.0.6.min.js"></script>
+<script src="/3rd/js/moment-with-locales.min.js"></script>
+<script src="/3rd/datepicker/js/datetimepicker.js"></script>
+<script src="/3rd/datepicker/js/datetimepicker.templates.js"></script>
+<script src="/3rd/js/ng-file-upload-all.min.js"></script>
+<script src="/3rd/swal/sweetalert2.all.min.js"></script>
+
+<!-- Application Javascsript Files -->
+
+<script src="/app/js/app.module.js"></script>
+<script src="/app/js/home.component.js"></script>
+<script src="/app/js/login.component.js"></script>
+<script src="/app/js/profile.component.js"></script>
+<script src="/app/js/register.component.js"></script>
+<script src="/app/js/new-group.component.js"></script>
+<script src="/app/js/update-group.component.js"></script>
+<script src="/app/js/features.component.js"></script>
+
+</body>
+</html>

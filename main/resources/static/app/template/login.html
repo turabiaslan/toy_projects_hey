@@ -1,0 +1,31 @@
+<div class="text-center" style="padding-top: 170px"><h2>Hey App Login</h2>
+    <div class="text-center">
+        <form class="w-50" style="display: inline-block" novalidate="novalidate">
+            <div class="form-outline mb-4">
+                <!--Username Input -->
+                <input type="text" id="usernameFormId" class="form-control" ng-model="credential.username"
+                       autocomplete="off"/>
+                <label class="form-label" for="usernameFormId">Username</label>
+            </div>
+            <!--Password Input-->
+            <div class="form-outline mb-4">
+                <input type="password" id="passwordFormId" class="form-control" ng-model="credential.password"
+                       autocomplete="off"/>
+                <label class="form-label" for="passwordFormId">Password</label>
+            </div>
+
+
+            <!--Submit button -->
+
+            <button type="button" class="btn btn-primary btn-block mb-4" ng-click="login()">Sign in</button>
+
+            <!--Register button -->
+
+            <div class="text-center">
+                <p> Not a member? <a href="/register">Register</a></p>
+            </div>
+        </form>
+    </div>
+</div>
+
+

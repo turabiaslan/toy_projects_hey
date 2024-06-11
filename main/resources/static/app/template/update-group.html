@@ -1,0 +1,59 @@
+<div class="text-center" style="padding-top: 140px">
+    <form class="w-50" style="display: inline-block" novalidate="novalidate">
+        <div class="form-outline mb-4">
+
+            <div>
+                <select class="form-control" ng-model="participantNew">
+                    <option ng-repeat="a in accounts">{{a.username}}</option>
+
+                </select>
+                <button style="position: relative" type="button" class="btn btn-primary btn-block mb-4"
+                        ng-click="add()" ng-model="participantNew">
+                    Add to Group
+                </button>
+            </div>
+
+            <div>
+                <select class="form-control" ng-model="pRemoval" >
+                    <option ng-repeat="p in group.participants">{{p.username}}</option>
+
+                </select>
+
+                <button style="position: relative" type="button" class="btn btn-primary btn-block mb-4"
+                        ng-click="remove(p.username)">
+                    Remove From Group
+                </button>
+            </div>
+            <input style="margin-top: 15px" type="text" id="usernameFormId" class="form-control" ng-model="group.name"
+                   autocomplete="off"/>
+            <label class="form-label" for="usernameFormId">Group Name</label>
+        </div>
+
+        <div class="form-outline mb-4">
+            <input type="text" id="passwordFormId" class="form-control" ng-model="group.description"
+                   autocomplete="off"/>
+            <label class="form-label" for="passwordFormId">Group Description</label>
+        </div>
+
+
+        <div class="mx-auto">
+            <label for="file" class="form-label, hand">Avatar</label>
+            <div>
+                <button class="button" ngf-select ng-model="file" name="file" ngf-pattern="'image/*'"
+                        ngf-accept="'image/*'"
+                        ngf-max-size="20MB"><b>Select</b>
+
+                </button>
+            </div>
+
+        </div>
+
+
+        <!--Submit button -->
+        <!--Register button -->
+
+        <button type="button" class="btn btn-primary btn-block mt-4" ng-click="save()">Save</button>
+
+
+    </form>
+</div>

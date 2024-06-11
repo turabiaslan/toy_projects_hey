@@ -1,0 +1,45 @@
+<div class="text-center" style="padding-top: 170px">
+    <form class="w-50" style="display: inline-block" novalidate="novalidate">
+        <div class="form-outline mb-4">
+
+
+            <select class="form-control" ng-model="group.participants" multiple="multiple"  ng-dblclick="publicSelected(r)">
+                <option ng-repeat="account in accounts">{{account.username}}</option>
+
+            </select>
+
+            <input style="margin-top: 15px" type="text" id="usernameFormId" class="form-control" ng-model="group.name"
+                   autocomplete="off"/>
+            <label class="form-label" for="usernameFormId">Group Name</label>
+        </div>
+
+        <div class="form-outline mb-4">
+            <input type="text" id="passwordFormId" class="form-control" ng-model="group.description"
+                   autocomplete="off"/>
+            <label class="form-label" for="passwordFormId">Group Description</label>
+        </div>
+
+
+
+
+        <div class="mx-auto">
+            <label for="file" class="form-label, hand">Avatar</label>
+            <div>
+                <button class="button" ngf-select ng-model="file" name="file" ngf-pattern="'image/*'"
+                        ngf-accept="'image/*'"
+                        ngf-max-size="20MB" ><b>Select</b>
+
+                </button>
+            </div>
+
+        </div>
+
+
+        <!--Submit button -->
+        <!--Register button -->
+
+        <button type="button" class="btn btn-primary btn-block mt-4" ng-click="save()">Save</button>
+
+
+    </form>
+</div>

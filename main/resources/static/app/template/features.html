@@ -1,0 +1,17 @@
+<div class="text-center" style="padding-top: 170px">
+    <form class="w-50" style="display: inline-block" novalidate="novalidate">
+        <div class="form-outline mb-4">
+
+
+            <select class="form-control"  ng-model="account">
+                <option ng-repeat="account in accounts">{{account}}</option>
+
+            </select>
+
+            <input style="margin-top: 15px" type="text" id="usernameFormId" class="form-control" ng-model="name"
+                   autocomplete="off"/>
+            <label class="form-label" for="usernameFormId">Group Name</label>
+        </div>
+        <button type="button" class="btn btn-primary btn-block mt-4" ng-click="save()">Save</button>
+    </form>
+</div>
